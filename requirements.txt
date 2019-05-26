@@ -1,0 +1,4 @@
+Django==2.2
+django-jet==1.0.8
+sqlparse==0.3.0
+mysqlclient==1.4.2

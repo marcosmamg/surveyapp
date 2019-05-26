@@ -108,3 +108,9 @@ venv.bak/
 
 # static files collectstatic
 static/*
+
+# Docker volume for mysql
+/mysql/*
+
+#MAC files
+.DS_Store
