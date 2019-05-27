@@ -1,7 +1,8 @@
 from django.contrib import admin
 from survey.models import Question, Choice, UserResponse
+from jet.admin import CompactInline
 
-class QuestionInline(admin.TabularInline):
+class QuestionInline(CompactInline):
     model = Choice
 
 class QuestionAdmin(admin.ModelAdmin):

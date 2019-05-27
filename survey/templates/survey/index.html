@@ -1,0 +1,69 @@
+{% extends 'survey/base.html' %}
+
+{% block content %}
+    {% if question is not None %}
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="tab-content panels-faq">
+            <div class="tab-pane active" id="tab1">
+                <div class="panel-group" id="help-accordion-1">
+                    {% if user.is_authenticated %}
+                        <div class="panel panel-default panel-help">
+                            <div class="panel-heading">
+                                <h2>{{ question.question_text }}</h2>
+                            </div>
+                        
+                            <div id="opret-produkt" class="collapse in">
+                                <div class="panel-body">
+                                    <form action="{% url 'submission' question.id %}" method="post">
+                                        {% csrf_token %}
+
+                                        <div class="row">
+                                            {% for choice in question.choice_set.all %}
+                                                <div class="col-lg-6">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <input type="radio" name="choice"
+                                                            id="choice{{ forloop.counter }}"
+                                                            value="{{ choice.id}}" />
+                                                        </span>
+                                                        <span class="form-control">
+                                                            {{ choice.choice_text }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        
+                                        <input class="btn btn-primary" type="submit" value="Submit" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <h1><span>You must be logged in to complete the survey. <a href="/admin">Sign in</a></span></h1>
+                    {% endif %}
+                </div>    
+            </div>
+        </div>
+                                
+        {% if error_message %}
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> {{ error_message }}
+            </div>
+        {% endif %}
+    {% elif all_answered %}
+        <p>
+            Survey completed. Log in as administrator to review results.
+        </p>
+        <a href="/admin">Admin portal</a>
+    {% else %}
+        <p>
+            There are not questionaries setup.
+            <a href="{% url 'admin:index' %}">
+                Survey Admin page
+            </a>.
+        </p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,80 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Home {% endblock title %} | Survey App</title>
+        {% block head_meta %}
+            {% block head_meta_charset %}
+                <meta http-equiv="Content-Type"
+                      content="text/html; charset=utf-8" />
+            {% endblock head_meta_charset %}
+            {% block head_meta_contentlanguage %}
+                <meta http-equiv="Content-Language" value="en-US" />
+            {% endblock head_meta_contentlanguage %}
+            {% block head_meta_viewport %}
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1.0">
+            {% endblock head_meta_viewport %}
+        {% endblock head_meta %}
+        {% block head_css %}
+            {% block head_css_site %}
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" 
+                href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+                integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+                crossorigin="anonymous"
+            >
+
+            
+                <link href="/static/survey/styles.css"
+                      rel="stylesheet" media="screen">
+            {% endblock head_css_site %}
+            {% block head_css_section %}{% endblock head_css_section %}
+            {% block head_css_page %}{% endblock head_css_page %}
+        {% endblock head_css %}
+    </head>
+    <body>
+            <nav class="navbar navbar-inverse">
+                <a class="navbar-brand" href="{% url 'index' %}">Django Survey App</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        {% if user.is_authenticated %}
+                            <a href="/admin">Welcome, {{ user.get_username }}</a>
+                        {% else %}
+                            <a href="/admin">Welcome, please Log in </a>
+                        {% endif %}
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li><a href="/reports">View reports</a></li>        
+                        <li><a href="/admin/logout">Log out</a></li>
+                    {% endif %}
+                    
+                </ul>
+            </nav>
+
+        <div class="content container">
+            <div class="row">
+
+                <div class="col-md-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+        {% block footer_javascript_site %}
+            <script
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous">
+            </script>
+
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+                crossorigin="anonymous">
+            </script>
+            
+            <script src="/static/survey/app.js"></script>
+        {% endblock footer_javascript_site %}
+</html>
