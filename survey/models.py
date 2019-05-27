@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models import Count
+import json
 class Question(models.Model):
     question_text = models.CharField( max_length=200, verbose_name=u"Question")
 
@@ -27,11 +28,34 @@ class UserResponse(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    iscorrect = models.BooleanField(default = False)
 
     def __str__(self):
-        return '{} - {} - {}'.format(self.user, self.question, self.choice)
+        return 'User: {}, was asked: {} Anwered: {} and the answer is: {}'.format(self.user, self.question, self.choice, self.iscorrect)
     
     class Meta:
         verbose_name = "User Response"
         verbose_name_plural = "User  Responses"
 
+    def save(self, *args, **kwargs):
+        self.iscorrect = True if self.choice.correct_answer == True else False
+        super(UserResponse, self).save(*args, **kwargs)
+
+    @property
+    def question_text(self):
+        return self.question.question_text
+
+    @property
+    def choice_text(self):
+        return self.choice.choice_text
+
+    @property
+    def username(self):
+        return self.user.username
+
+    @property
+    def total_correct(self):
+         total = self.userresponse_set.filter(iscorrect=True).count()
+         return total
+
+        

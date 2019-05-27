@@ -3,6 +3,9 @@ from survey.models import Question, UserResponse, Choice
 from .utils import get_random_question
 from django import urls
 from django.http import HttpResponseRedirect
+from rest_framework import generics
+from .serializers import UserResponseSerializer, UserResponseSummarySerializer
+
 
 def index(request):
     question = get_random_question(request.user)
@@ -28,3 +31,11 @@ def submission(request, question_id):
         )
         redirect_url = urls.reverse('index')
         return HttpResponseRedirect(redirect_url)
+
+class UserResponseList(generics.ListCreateAPIView):
+    queryset = UserResponse.objects.all()
+    serializer_class = UserResponseSerializer
+
+class UserResponseSummaryList(generics.ListCreateAPIView):
+    queryset = UserResponse.objects.all()
+    serializer_class = UserResponseSummarySerializer
