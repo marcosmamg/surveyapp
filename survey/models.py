@@ -16,6 +16,10 @@ class Question(models.Model):
     def total_correct(self):
         return self.userresponse_set.filter(iscorrect=True).count()
 
+    @property
+    def total_incorrect(self):
+        return self.userresponse_set.filter(iscorrect=False).count()    
+
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=20, verbose_name=u"Choice")
