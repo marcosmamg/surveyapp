@@ -11,6 +11,10 @@ class Question(models.Model):
     class Meta:
         verbose_name = "Question"
         verbose_name_plural = "Questions"
+    
+    @property
+    def total_correct(self):
+        return self.userresponse_set.filter(iscorrect=True).count()
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -52,10 +56,4 @@ class UserResponse(models.Model):
     @property
     def username(self):
         return self.user.username
-
-    @property
-    def total_correct(self):
-         total = self.userresponse_set.filter(iscorrect=True).count()
-         return total
-
         

@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from survey.models import Question, UserResponse, Choice
+from survey.models import Question, UserResponse, Choice, Question
 from .utils import get_random_question
 from django import urls
 from django.http import HttpResponseRedirect
 from rest_framework import generics
-from .serializers import UserResponseSerializer, UserResponseSummarySerializer
+from .serializers import UserResponseSerializer, QuestionSummarySerializer
 
 
 def index(request):
@@ -37,5 +37,5 @@ class UserResponseList(generics.ListCreateAPIView):
     serializer_class = UserResponseSerializer
 
 class UserResponseSummaryList(generics.ListCreateAPIView):
-    queryset = UserResponse.objects.all()
-    serializer_class = UserResponseSummarySerializer
+    queryset = Question.objects.all()
+    serializer_class = QuestionSummarySerializer
