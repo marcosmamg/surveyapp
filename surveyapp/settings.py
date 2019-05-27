@@ -25,7 +25,7 @@ SECRET_KEY = 'e%rgp7o^_eko@k$!^coojc=&hag6*)2cxb7l_!nx1wme)s!v%6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # for testing purposes only
 
 ADMINS = (
      ('Marcos Moreno', 'marcosmoreno@grupoeltriunfo.com.ni'),
