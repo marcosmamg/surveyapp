@@ -39,3 +39,7 @@ class UserResponseList(generics.ListCreateAPIView):
 class UserResponseSummaryList(generics.ListCreateAPIView):
     queryset = Question.objects.all()
     serializer_class = QuestionSummarySerializer
+
+def report(request):
+    context = {'user': 'Marcos Moreno'}
+    return render(request, 'survey/report.html', context)

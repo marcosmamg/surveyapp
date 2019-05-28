@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^(?P<question_id>[0-9]+)/submission/$', views.submission, name='submission'),
     path('userresponse/', views.UserResponseList.as_view()),
     path('userresponse/summary', views.UserResponseSummaryList.as_view()),
+    path('report/', views.report, name ='report'),
 ]
 
 

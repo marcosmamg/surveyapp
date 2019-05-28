@@ -1,0 +1,15 @@
+{% extends 'survey/base.html' %}
+
+{% block content %}
+    <div id="container"></div>
+{% endblock %}
+
+{% block footer_javascript_site %}
+            <script
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous">
+            </script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="/static/survey/app.js"></script>
+{% endblock footer_javascript_site %}
