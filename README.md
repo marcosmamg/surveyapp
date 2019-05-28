@@ -33,4 +33,5 @@ Notes: In case the site is not loading, it is because django container has not c
         * User: root
         * Password: abc123
 ### To run unit tests, execute the following command:
-    * docker exec django pytest
+* `docker exec django pytest`
+
