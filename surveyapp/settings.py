@@ -89,7 +89,7 @@ DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'surveyapp',
-        'USER': 'django',
+        'USER': 'root',
         'PASSWORD': 'abc123',
         'HOST': 'mysql',
         'PORT': '3306',  # Default MySQL port
