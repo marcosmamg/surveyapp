@@ -12,14 +12,16 @@ services:
       - ./mysql:/var/lib/mysql
 
   django:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: django
     env_file:
     - .env
     restart: always 
     depends_on:
       - mysql
-   # command: sh -c './wait-for mysql:3306'
+    command: sh -c './wait-for mysql:3306 && python manage.py migrate --settings=surveyapp.settings.production && DJANGO_SETTINGS_MODULE=surveyapp.settings.production python manage.py runserver 0.0.0.0:8000'
     volumes:
       - .:/surveyapp
     networks:
@@ -29,6 +31,7 @@ services:
   # reverse proxy container (nginx)
   nginx:
     image: nginx:1.13
+    container_name: nginx
     ports:
       - 80:80
     volumes:

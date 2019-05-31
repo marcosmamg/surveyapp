@@ -23,9 +23,9 @@ SITE_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..')
 SECRET_KEY = os.environ.get('SECRET_KEY'),
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']  # for testing purposes only
+ALLOWED_HOSTS = ["*"]  # for testing purposes only
 
 ADMINS = (
     (
@@ -167,3 +167,10 @@ STATICFILES_FINDERS = (
 
 JET_SIDE_MENU_COMPACT = True
 JET_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+#SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'

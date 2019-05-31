@@ -1,0 +1,17 @@
+atomicwrites==1.3.0
+attrs==19.1.0
+Django==2.2
+django-jet==1.0.8
+djangorestframework==3.9.4
+importlib-metadata==0.15
+more-itertools==7.0.0
+mysqlclient==1.4.2
+pluggy==0.12.0
+py==1.8.0
+pytest==4.5.0
+pytest-django==3.4.8
+pytz==2019.1
+six==1.12.0
+sqlparse==0.3.0
+wcwidth==0.1.7
+zipp==0.5.1

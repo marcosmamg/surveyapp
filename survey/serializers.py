@@ -10,12 +10,16 @@ class UserResponseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserResponse
-        fields = ('id', 'username', 'question_text', 'choice_text', 'iscorrect', )
+        fields = (
+                'id', 'username', 'question_text',
+                'choice_text', 'iscorrect', )
+
 
 class QuestionSummarySerializer(serializers.ModelSerializer):
     question_text = serializers.ReadOnlyField()
     total_correct = serializers.ReadOnlyField()
     total_incorrect = serializers.ReadOnlyField()
+
     class Meta:
         model = Question
-        fields = ('id', 'question_text', 'total_correct', 'total_incorrect' )
+        fields = ('id', 'question_text', 'total_correct', 'total_incorrect')

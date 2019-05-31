@@ -21,10 +21,6 @@
     * `docker exec -it django python manage.py createsuperuser`
 * Now you can open `http://localhost:8000` in your web browser.
 
-Notes: In case the site is not loading, it is because django container has not connected to MySQL properly.
-* To solve it, just restart the django container: 
-    * `docker restart django`
-
 ### Services:
 * Django: `http://localhost:8000`
 * PHPMyAdmin: `http://localhost:8082`

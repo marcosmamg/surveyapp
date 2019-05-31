@@ -1,0 +1,35 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    env_file:
+    - .env
+    restart: always
+    networks:
+      - database_network
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: django
+    env_file:
+    - .env
+    restart: always 
+    depends_on:
+      - mysql
+    command: sh -c './wait-for mysql:3306 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000'
+    volumes:
+      - .:/surveyapp
+    ports:
+      - 80:8000
+    networks:
+      - database_network
+
+networks:
+  database_network:
+    driver: bridge
