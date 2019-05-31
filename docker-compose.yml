@@ -21,7 +21,7 @@ services:
     restart: always 
     depends_on:
       - mysql
-    command: sh -c './wait-for mysql:3306 && python manage.py migrate --settings=surveyapp.settings.production && DJANGO_SETTINGS_MODULE=surveyapp.settings.production python manage.py runserver 0.0.0.0:8000'
+    command: sh -c './wait-for mysql:3306 && python manage.py migrate --settings=surveyapp.settings.production'
     volumes:
       - .:/surveyapp
     networks:

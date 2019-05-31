@@ -4,7 +4,7 @@ from django import urls
 from django.http import HttpResponseRedirect
 from rest_framework import generics
 from .serializers import UserResponseSerializer, QuestionSummarySerializer
-
+import random
 
 def get_random_question(user, previous_question=''):
     # Getting all responses for current user
