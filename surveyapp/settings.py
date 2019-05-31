@@ -20,7 +20,7 @@ SITE_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)),'..')
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e%rgp7o^_eko@k$!^coojc=&hag6*)2cxb7l_!nx1wme)s!v%6'
+SECRET_KEY = os.environ.get('SECRET_KEY'),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*'] # for testing purposes only
 
 ADMINS = (
-     ('Marcos Moreno', 'marcosmoreno@grupoeltriunfo.com.ni'),
+     (os.environ.get('DJANGO_ADMIN_NAME'), os.environ.get('DJANGO_ADMIN_EMAIL')),
 )
 
 MANAGERS = ADMINS
@@ -88,11 +88,11 @@ WSGI_APPLICATION = 'surveyapp.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'surveyapp',
-        'USER': 'root',
-        'PASSWORD': 'abc123',
-        'HOST': 'mysql',
-        'PORT': '3306',  # Default MySQL port
+        'NAME': os.environ.get('MYSQL_DATABASE'),
+        'USER': os.environ.get('MYSQL_USER'),
+        'PASSWORD': os.environ.get('MYSQL_ROOT_PASSWORD'),
+        'HOST': os.environ.get('MYSQL_HOST'),
+        'PORT': os.environ.get('MYSQL_PORT'),
     }
 
 }
@@ -143,6 +143,16 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(SITE_ROOT,'static_root'),
 )
+
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = os.path.join(SITE_ROOT,'media_root')
+
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://example.com/media/", "http://media.example.com/"
+MEDIA_URL = '/media/'
 
 
 # List of finder classes that know how to find static files in

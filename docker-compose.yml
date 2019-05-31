@@ -5,38 +5,43 @@ services:
     container_name: mysql
     env_file:
     - .env
-    restart: always 
+    restart: always
     networks:
-      - back
+      - database_network
     volumes:
       - ./mysql:/var/lib/mysql
 
   django:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
     container_name: django
+    env_file:
+    - .env
     restart: always 
-    networks:
-      - back
+    depends_on:
+      - mysql
+   # command: sh -c './wait-for mysql:3306'
     volumes:
       - .:/surveyapp
-    ports:
-      - "8000:8000"
-    depends_on:
-      - mysql
-  
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    environment:
-      - PMA_ARBITRARY=1
-    restart: always
-    depends_on:
-      - mysql
-    ports:
-      - 8082:80
     networks:
-      - back
+      - database_network
+      - nginx_network
+  
+  # reverse proxy container (nginx)
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./static:/surveyapp/static
+      - ./media:/surveyapp/media
+    networks:
+      - nginx_network
+    depends_on:
+      - django
 
 networks:
-  back:
+  database_network:
+    driver: bridge
+  nginx_network:
+    driver: bridge

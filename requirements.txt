@@ -3,6 +3,7 @@ attrs==19.1.0
 Django==2.2
 django-jet==1.0.8
 djangorestframework==3.9.4
+gunicorn==19.9.0
 importlib-metadata==0.15
 more-itertools==7.0.0
 mysqlclient==1.4.2
