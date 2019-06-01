@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY'),
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["marcosmoreno.dev", "138.68.59.215"]  # for testing purposes only
+ALLOWED_HOSTS = ["*"]  # for testing purposes only
 
 ADMINS = (
     (
