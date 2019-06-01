@@ -11,6 +11,7 @@ urlpatterns = [
     path('userresponse/', views.UserResponseList.as_view()),
     path('userresponse/summary', views.UserResponseSummaryList.as_view()),
     path('report/', views.report, name='report'),
+    path('newsession/', views.recreate_session, name='recreate_session '),
 ]
 
 

@@ -5,13 +5,10 @@ import json
 
 
 class Question(models.Model):
-    """[summary]
-
-    Arguments:
-        models {[type]} -- [description]
+    """ Model that holds questions records
 
     Returns:
-        [type] -- [description]
+        String  -- question text value
     """
     question_text = models.CharField(max_length=200, verbose_name=u"Question")
 
@@ -32,13 +29,10 @@ class Question(models.Model):
 
 
 class Choice(models.Model):
-    """[summary]
-
-    Arguments:
-        models {[type]} -- [description]
+    """ Model that holds the choices for each question
 
     Returns:
-        [type] -- [description]
+        string -- choice text value
     """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=20, verbose_name=u"Choice")
@@ -55,27 +49,23 @@ class Choice(models.Model):
 
 
 class UserResponse(models.Model):
-    """[summary]
-
-    Arguments:
-        models {[type]} -- [description]
+    """ Model that holds the responses
+        or relationships between users,
+        and choices selected
 
     Returns:
-        [type] -- [description]
+        string -- question and choice answered
     """
     user = models.ForeignKey(
-                        User,
-                        #null=True,
-                        #blank=True,
+                        User, null=True, blank=True,
                         on_delete=models.CASCADE)
+    session_key = models.CharField(max_length=32, null=True, blank=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
     iscorrect = models.BooleanField(default=False)
 
     def __str__(self):
-        return
-        'User: {}, was asked: {} Anwered: {} and the answer is: {}' \
-            .format(self.user, self.question, self.choice, self.iscorrect)
+        return '%s  -  %s' % (self.question, self.choice)
 
     class Meta:
         verbose_name = "User Response"
@@ -95,4 +85,4 @@ class UserResponse(models.Model):
 
     @property
     def username(self):
-        return self.user.username
+        return self.user.username if (self.username) else '-'

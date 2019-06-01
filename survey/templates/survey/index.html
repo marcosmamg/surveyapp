@@ -8,7 +8,6 @@
         <div class="tab-content panels-faq">
             <div class="tab-pane active" id="tab1">
                 <div class="panel-group" id="help-accordion-1">
-                    {% if user.is_authenticated %}
                         <div class="panel panel-default panel-help">
                             <div class="panel-heading">
                                 <h2>{{ question.question_text }}</h2>
@@ -41,9 +40,6 @@
                                 </div>
                             </div>
                         </div>
-                    {% else %}
-                        <h1><span>You must be logged in to complete the survey. <a href="/admin">Sign in</a></span></h1>
-                    {% endif %}
                 </div>    
             </div>
         </div>

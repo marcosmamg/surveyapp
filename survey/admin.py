@@ -3,19 +3,17 @@ from survey.models import Question, Choice, UserResponse
 
 
 class QuestionInline(admin.StackedInline):
-    """[summary]
-
-    Arguments:
-        admin {[type]} -- [description]
+    """
+        Representation of the choices
+        model as an inline
     """
     model = Choice
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    """[summary]
-
-    Arguments:
-        admin {[type]} -- [description]
+    """
+        Representation of the model
+        in the admin for Questions
     """
     inlines = [
         QuestionInline,
@@ -23,12 +21,17 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 class UserResponseAdmin(admin.ModelAdmin):
-    """[summary]
-
-    Arguments:
-        admin {[type]} -- [description]
     """
-    list_display = ['user', 'question', 'choice', 'iscorrect', ]
+        Representation of the model
+        in the admin module for user responses
+    """
+    list_display = [
+                    'user',
+                    'session_key',
+                    'question',
+                    'choice',
+                    'iscorrect',
+                    ]
     readonly_fields = ['iscorrect', ]
 
 admin.site.register(Question, QuestionAdmin)

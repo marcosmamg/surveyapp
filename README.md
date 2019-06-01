@@ -15,19 +15,19 @@
 * Clone this project repo on any working folder.
 * Create .env file to specifiy credentials and some other info. Refer to env.example file, leave as is and django will connect automatically, otherwise update `settings.py`
 * Open the OS terminal and enter the Project path.
-* Write `docker-compose up -d` in your terminal.
-* Run the following commands to execute migrations and create superuser: 
-    * `docker exec -it django python manage.py migrate`
-    * `docker exec -it django python manage.py createsuperuser`
-* Now you can open `http://localhost:8000` in your web browser.
+* For Dev instances run:
+    * `make up_dev`
+* For production run:
+    * `make up_prod`
+* For migrations run:
+    * `make migrate`
+* Run the following command to create superuser and make sure to pass values to the parameters with no spaces: 
+    * `make createsuperuser username= email= password=`
+* Now you can open `http://localhost` in your web browser.
+* To simulate a new user, click the button `New Session` and it will show all questions again as it will be a new session (User)
 
 ### Services:
-* Django: `http://localhost:8000`
-* PHPMyAdmin: `http://localhost:8082`
-    * Default Credentials as per env.example:
-        * Server: mysql
-        * User: root
-        * Password: abc123
-### To run unit tests, execute the following command:
-* `docker exec django pytest`
+* Django: `http://localhost`
 
+### To run unit tests:
+* `make pytest`

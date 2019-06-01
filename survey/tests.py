@@ -4,6 +4,9 @@ from django.test import TestCase
 
 
 class QuestionTest(TestCase):
+    """ Simple Test case to validate model
+        and the creation of records
+    """
     def setUp(self):
         self.question_text = "Question text?"
 
@@ -16,6 +19,9 @@ class QuestionTest(TestCase):
 
 
 class ChoiceTest(TestCase):
+    """ Simple Test case to validate model
+        and the creation of records
+    """
     def setUp(self):
         self.choice_text = "Choice value"
         self.question_text = "Question text?"
@@ -35,6 +41,9 @@ class ChoiceTest(TestCase):
 
 
 class UserResponseTest(TestCase):
+    """ Simple Test case to validate model
+        and the creation of records
+    """
     def setUp(self):
         self.choice_text = "Choice value"
         self.question_text = "Question text?"
