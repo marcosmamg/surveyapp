@@ -19,6 +19,7 @@
     * `make up_dev`
 * For production run:
     * `make up_prod`
+    * For this environment, you will need to provide ssl certificate and setup nginx accordingly
 * For migrations run:
     * `make migrate`
 * Run the following command to create superuser and make sure to pass values to the parameters with no spaces: 
