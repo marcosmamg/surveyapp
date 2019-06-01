@@ -35,17 +35,16 @@
         {% endblock head_css %}
     </head>
     <body>
-            <nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse">
                 <a class="navbar-brand" href="{% url 'index' %}">Django Survey App</a>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         {% if user.is_authenticated %}
                             <a href="/admin">Welcome, {{ user.get_username }}</a>
                         {% else %}
-                            <a href="/admin">Admin area </a>
-                        {% endif %}
-                    </li>
-                    <li><a href="/survey/newsession">New Session </a></li>
+                            <a href="/admin">Admin area </a></li>
+                            <li><a href="/survey/newsession">New Session </a></li>
+                    {% endif %}
                     {% if user.is_authenticated %}
                         <li><a href="/survey/report">View reports</a></li>        
                         <li><a href="/admin/logout">Log out</a></li>
@@ -53,7 +52,6 @@
                     
                 </ul>
             </nav>
-
         <div class="content container">
             <div class="row">
 
