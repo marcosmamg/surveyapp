@@ -114,3 +114,6 @@ static/*
 
 #MAC files
 .DS_Store
+
+#nginx conf
+/config/nginx/conf.d/*

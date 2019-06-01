@@ -1,9 +1,11 @@
 FROM python:3.6.8-alpine3.9
 ENV PYTHONUNBUFFERED 1
-RUN apk update
-RUN apk add --no-cache python3-dev mariadb-dev gcc libc-dev unixodbc-dev
-RUN mkdir /surveyapp
+RUN apk update; \
+    apk add --no-cache python3-dev mariadb-dev gcc libc-dev unixodbc-dev netcat-openbsd; \
+    mkdir /surveyapp;
 WORKDIR /surveyapp
 COPY requirements.txt /surveyapp/
 RUN pip install -r requirements.txt
 COPY . /surveyapp/
+EXPOSE 8000
+CMD ["gunicorn", "-c", "config/gunicorn/conf.py", "--bind", "0.0.0.0:8000", "--chdir", "surveyapp", "surveyapp.wsgi:application"]
