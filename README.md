@@ -31,3 +31,6 @@
 
 ### To run unit tests:
 * `make pytest`
+
+### PEP 8 -- Style Guide for Python
+* This project has been evaluated to meet all PEP 8 conventions
