@@ -13,7 +13,7 @@
 * Download Docker https://www.docker.com/community-edition
 * Download Docker compose https://docs.docker.com/compose/install/
 * Clone this project repo on any working folder.
-* Create .env file to specifiy credentials and some other info. Refer to env.example file, leave as is and django will connect automatically, otherwise update `settings.py`
+* Create .env file to specifiy credentials and some other info. Refer to env.example file
 * Open the OS terminal and enter the Project path.
 * For Dev instances run:
     * `make up_dev`
