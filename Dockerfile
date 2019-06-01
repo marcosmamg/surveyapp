@@ -8,4 +8,4 @@ COPY requirements.txt /surveyapp/
 RUN pip install -r requirements.txt
 COPY . /surveyapp/
 EXPOSE 8000
-CMD ["gunicorn", "-c", "config/gunicorn/conf.py", "--bind", "0.0.0.0:8000", "--chdir", "surveyapp", "surveyapp.wsgi:application"]
+#CMD ["gunicorn", "-c", "config/gunicorn/conf.py", "--bind", "0.0.0.0:8000", "--chdir", "surveyapp", "surveyapp.wsgi:application"]

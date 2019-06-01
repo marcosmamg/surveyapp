@@ -4,7 +4,7 @@ services:
     image: mysql:5.7
     container_name: mysql
     env_file:
-    - .env
+      - .env
     restart: always
     networks:
       - database_network
@@ -17,11 +17,13 @@ services:
       dockerfile: Dockerfile
     container_name: django
     env_file:
-    - .env
+      - .env
     restart: always 
     depends_on:
       - mysql
-    command: sh -c './wait-for mysql:3306 && python manage.py migrate --settings=surveyapp.settings.production'
+    command: sh -c './wait-for mysql:3306 && 
+              python manage.py migrate --settings=surveyapp.settings.production && 
+              gunicorn -c config/gunicorn/conf.py --bind 0.0.0.0:8000 --chdir surveyapp surveyapp.wsgi:application'
     volumes:
       - .:/surveyapp
     networks:
