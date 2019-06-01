@@ -13,12 +13,13 @@
 * Download Docker https://www.docker.com/community-edition
 * Download Docker compose https://docs.docker.com/compose/install/
 * Clone this project repo on any working folder.
-* Create .env file to specifiy credentials and some other info. Refer to env.example file, leave as is and django will connect automatically, otherwise update `settings.py`
+* Create .env file to specifiy credentials and some other info. Refer to env.example file
 * Open the OS terminal and enter the Project path.
 * For Dev instances run:
     * `make up_dev`
 * For production run:
     * `make up_prod`
+    * For this environment, you will need to provide ssl certificate and setup nginx accordingly
 * For migrations run:
     * `make migrate`
 * Run the following command to create superuser and make sure to pass values to the parameters with no spaces: 
